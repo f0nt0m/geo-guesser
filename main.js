@@ -2,7 +2,7 @@ let state = {
     score: 0,
     level: 1,
     consecutiveCorrect: 0,
-    currentCity: null,
+    currentCountry: null,
     timerId: null,
     timeLeft: 0
 };
@@ -11,7 +11,6 @@ console.log("main.js загружен");
 
 async function getRandomCountry() {
     const url = 'https://restcountries.com/v3.1/all';
-
     try {
         const response = await fetch(url);
         const data = await response.json();
@@ -21,7 +20,10 @@ async function getRandomCountry() {
             country => country.translations?.rus?.common && country.latlng
         );
 
-        if (!validCountries || validCountries.length === 0) throw new Error("Список стран пуст.");
+        if (!validCountries || validCountries.length === 0) {
+            console.error("Список стран пуст.");
+            return null;
+        }
 
         const randomIndex = Math.floor(Math.random() * validCountries.length);
         const selectedCountry = validCountries[randomIndex];
@@ -41,7 +43,7 @@ const scoreEl = document.getElementById("score");
 const levelEl = document.getElementById("level");
 const infoEl = document.getElementById("info");
 const timeLeftEl = document.getElementById("timeLeft");
-const targetCityNameEl = document.getElementById("targetCityName");
+const targetCountryNameEl = document.getElementById("targetCountryName");
 const generateBtn = document.getElementById("generateBtn");
 
 generateBtn.addEventListener("click", nextRound);
@@ -56,8 +58,8 @@ async function nextRound() {
         return;
     }
 
-    state.currentCity = randomCountry;
-    targetCityNameEl.textContent = "Страна: " + randomCountry.name;
+    state.currentCountry = randomCountry;
+    targetCountryNameEl.textContent = "Страна: " + randomCountry.name;
 
     state.timeLeft = 30;
     timeLeftEl.textContent = `Осталось времени: ${state.timeLeft} c.`;
@@ -68,7 +70,6 @@ async function nextRound() {
 
 function tick() {
     state.timeLeft--;
-    if (state.timeLeft < 0) state.timeLeft = 0;
     timeLeftEl.textContent = `Осталось времени: ${state.timeLeft} c.`;
 
     if (state.timeLeft <= 0) {
@@ -85,17 +86,17 @@ function stopTimer() {
 }
 
 function checkUserGuess(userCoords) {
-    if (!state.currentCity) {
+    if (!state.currentCountry) {
         infoEl.textContent = "⚠️ Нажмите 'Сгенерировать страну' для начала.";
         return;
     }
 
     const distance = ymaps.coordSystem.geo.getDistance(
-        [state.currentCity.coords[0], state.currentCity.coords[1]],
+        [state.currentCountry.coords[0], state.currentCountry.coords[1]],
         [userCoords[0], userCoords[1]]
     );
 
-    const threshold = 200000;
+    const threshold = 500000;
     if (distance <= threshold) {
         stopTimer();
         handleGuessSuccess(distance);

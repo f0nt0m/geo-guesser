@@ -18,11 +18,8 @@ function init() {
         });
 
         myMap.setType('yandex#satellite');
-
         myMap.behaviors.enable('scrollZoom');
-
         myMap.behaviors.enable('dblClickZoom');
-
         myMap.controls.remove('searchControl');
         myMap.controls.remove('trafficControl');
         myMap.controls.remove('typeSelector');
@@ -31,10 +28,10 @@ function init() {
         myMap.events.add('click', onMapClick);
 
         if (!myMap) {
-            throw new Error("Карта не была инициализирована");
+            console.error("Карта не была инициализирована");
+        } else {
+            console.log("Карта успешно инициализирована");
         }
-
-        console.log("Карта успешно инициализирована");
     } catch (error) {
         console.error("Ошибка при инициализации карты:", error);
         document.getElementById('map').innerHTML =
