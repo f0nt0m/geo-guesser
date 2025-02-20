@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Geo Guesser</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+<div class="container">
+    <header class="header">
+        <h1>Geo Guesser</h1>
+    </header>
+
+    <div class="game-controls">
+        <div class="control-panel">
+            <div class="city-info">
+                <button id="generateBtn" class="btn-generate">Сгенерировать город</button>
+                <div id="targetCityName" class="city-name">Город: ?</div>
+                <div id="timeLeft" class="timer">Осталось времени: 0 с.</div>
+            </div>
+        </div>
+
+        <div class="control-panel">
+            <div id="info">Выберите город на карте</div>
+        </div>
+
+        <div class="control-panel">
+            <div class="stats">
+                <div id="score" class="stat-item">Счёт: 0</div>
+                <div id="level" class="stat-item">Уровень: 1</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="map-container">
+        <div id="map"></div>
+    </div>
+</div>
+
+<script src="https://api-maps.yandex.ru/2.1/?apikey=f8831f2e-d3bf-48f9-b29c-36dd0c7ba5ce&lang=ru_RU"></script>
+<script src="./main.js"></script>
+<script src="./map.js"></script>
+</body>
+</html>

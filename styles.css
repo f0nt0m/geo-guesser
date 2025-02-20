@@ -1,0 +1,116 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f8f9fa;
+    color: #2d3436;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.header {
+    background: linear-gradient(135deg, #6c5ce7, #a55eea);
+    color: white;
+    padding: 1rem;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.game-controls {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.control-panel {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.btn-generate {
+    background: #00b894;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-generate:hover {
+    background: #00a187;
+    transform: translateY(-1px);
+}
+
+.btn-generate:disabled {
+    background: #b2bec3;
+    cursor: not-allowed;
+}
+
+.stats {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.stat-item {
+    background: #f1f2f6;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-weight: 500;
+}
+
+.timer {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #2d3436;
+}
+
+.map-container {
+    height: calc(100vh - 220px);
+    min-height: 500px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#map {
+    width: 100%;
+    height: 100%;
+}
+
+#info {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 1rem;
+    font-size: 1.1rem;
+    color: #6c5ce7;
+    font-weight: 500;
+}
+
+.city-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.city-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
